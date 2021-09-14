@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API for notes APP",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "build": "rm -rf build/ && prettier --write src/ && tsc"
+  },
+  "author": "Khushal",
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
+    "@types/winston": "^2.4.4",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3",
+    "winston": "^3.3.3"
+  }
+}
