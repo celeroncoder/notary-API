@@ -2,6 +2,7 @@
 name: 
 about: 
 aim: bug-fix | new feature | enhancement
+commit: last commit
 ---
 
 #### PR Change Description
