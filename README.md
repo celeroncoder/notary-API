@@ -1,2 +1,2 @@
 # notary
-Notes App with Express-Typescript, MongoDB, and React.
+Notes App
