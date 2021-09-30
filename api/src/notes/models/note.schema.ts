@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import * as mongoose from "mongoose";
 
 export const NoteSchema = new mongoose.Schema({
     name: String,
