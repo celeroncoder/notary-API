@@ -10,6 +10,7 @@ import {
 import { NoteDto } from "./data/notes.dto";
 import { Note } from "./interfaces/notes.interfaces";
 import { NotesService } from "./notes.service";
+import { ValidateObjectId } from "./validate-objectId.pipe";
 
 @Controller("notes")
 export class NotesController {
@@ -21,7 +22,9 @@ export class NotesController {
     }
 
     @Get(":id")
-    async findOne(@Param("id") id): Promise<Note> {
+    async findOne(
+        @Param("id", new ValidateObjectId()) id: string,
+    ): Promise<Note> {
         return this.notesService.findOne(id);
     }
 
@@ -31,14 +34,16 @@ export class NotesController {
     }
 
     @Delete(":id")
-    async delete(@Param("id") id): Promise<Note> {
+    async delete(
+        @Param("id", new ValidateObjectId()) id: string,
+    ): Promise<Note> {
         return this.notesService.delete(id);
     }
 
     @Put(":id")
     async update(
         @Body() updateNoteDto: NoteDto,
-        @Param("id") id,
+        @Param("id", new ValidateObjectId()) id: string,
     ): Promise<Note> {
         return this.notesService.update(id, updateNoteDto);
     }
