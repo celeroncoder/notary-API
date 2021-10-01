@@ -6,13 +6,18 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { AuthModule } from "./auth/auth.module";
 import { UsersModule } from "./users/users.module";
 import config from "./config/keys";
+import { ThrottlerModule } from "@nestjs/throttler";
 
 @Module({
     imports: [
         NotesModule,
-        MongooseModule.forRoot(config.mongoURI),
         AuthModule,
         UsersModule,
+        MongooseModule.forRoot(config.mongoURI),
+        ThrottlerModule.forRoot({
+            ttl: 60,
+            limit: 10,
+        }),
     ],
     controllers: [AppController],
     providers: [AppService],
