@@ -37,7 +37,6 @@ jobs:
                       ${{ runner.os }}-build-${{ env.cache-name }}-
                       ${{ runner.os }}-build-
                       ${{ runner.os }}-
-            - name: Install Dependencies
+            - name: Install Dependencies & Build Project
               run: npm install
-            - name: Build
-              run: npm run build --if-present
+
