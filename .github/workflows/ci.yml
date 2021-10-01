@@ -39,4 +39,5 @@ jobs:
                       ${{ runner.os }}-
             - name: Install Dependencies & Build Project
               run: npm install
-
+            - name: Lint Project
+              run: npm run lint
