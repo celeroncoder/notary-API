@@ -25,5 +25,5 @@ WORKDIR /user/src/app
 COPY package.json .
 RUN npm install --only=production
 COPY --from=build /khushal/src/app/dist ./dist
-COPY --from=build /khushal/src/app/.env ./
+# COPY --from=build /khushal/src/app/.env ./
 CMD npm run start:prod
