@@ -15,3 +15,11 @@ jobs:
                 heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
                 heroku_email: ${{secrets.HEROKU_ACCOUNT_EMAIL}}
                 usedocker: true
+                stack: "container"
+                healthcheck: |
+                  "https://"
+                  ${{secrets.HEROKU_APP_NAME}}
+                  ".herokuapp.com/health"
+                checkstring: "ok"
+                delay: 5
+                rollbackonhealthcheckfailed: true
