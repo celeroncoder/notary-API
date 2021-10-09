@@ -2,10 +2,10 @@ name: Deploy
 
 on:
     push:
-        branches: [master]
+        branches: [dev]
 
 jobs:
-    deploy-prod:
+    deploy-stage:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -18,7 +18,7 @@ jobs:
                 stack: "container"
                 healthcheck: |
                   "https://"
-                  ${{secrets.HEROKU_APP_NAME}}
+                  ${{secrets.HEROKU_STAGING_APP_NAME}}
                   ".herokuapp.com/health"
                 checkstring: "ok"
                 delay: 60
