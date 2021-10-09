@@ -8,14 +8,14 @@ dotenv.config();
 declare const module: any;
 
 (async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
-    app.enableCors();
-    app.use(helmet());
+	const app = await NestFactory.create(AppModule);
+	app.enableCors();
+	app.use(helmet());
 
-    if (module.hot) {
-        module.hot.accept();
-        module.hot.dispose(() => app.close());
-    }
+	if (module.hot) {
+		module.hot.accept();
+		module.hot.dispose(() => app.close());
+	}
 
-    await app.listen(process.env.PORT || 8080);
+	await app.listen(process.env.PORT || 80);
 })();
