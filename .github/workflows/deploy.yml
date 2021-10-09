@@ -21,5 +21,5 @@ jobs:
                   ${{secrets.HEROKU_APP_NAME}}
                   ".herokuapp.com/health"
                 checkstring: "ok"
-                delay: 3600
+                delay: 60
                 rollbackonhealthcheckfailed: true
