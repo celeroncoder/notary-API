@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+    api:
+        # image: khushalbhardwaj-0111/notary
+        build:
+            dockerfile: Dockerfile
+            context: ./
+        environment:
+            NODE_ENV: production
+        ports:
+            - "8080:80"
