@@ -1,0 +1,9 @@
+{
+	"workbench.colorTheme": "The Best Theme",
+	"[dockerfile]": {
+		"editor.quickSuggestions": {
+			"strings": true
+		}
+	},
+	"prettier.configPath": "."
+}
