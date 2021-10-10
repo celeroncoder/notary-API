@@ -2,6 +2,7 @@ name: Deploy Production
 
 on:
     push:
+        paths: ['**.ts']
         branches: [master]
 
 jobs:

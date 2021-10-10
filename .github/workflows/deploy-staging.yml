@@ -2,6 +2,7 @@ name: Deploy Staging
 
 on:
     push:
+        paths: ['**.ts']
         branches: [dev]
 
 jobs:

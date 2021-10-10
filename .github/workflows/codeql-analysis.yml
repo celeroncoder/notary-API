@@ -13,6 +13,7 @@ name: "CodeQL"
 
 on:
   pull_request:
+    paths: ['**.ts']
     # The branches below must be a subset of the branches above
     branches: [ dev, master ]
 

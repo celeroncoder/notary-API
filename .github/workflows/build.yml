@@ -5,6 +5,7 @@ name: build
 
 on:
     pull_request:
+        paths: ['**.ts']
         branches: [master, dev]
 
 jobs:
