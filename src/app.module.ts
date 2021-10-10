@@ -10,21 +10,21 @@ import { ThrottlerModule } from "@nestjs/throttler";
 import { HttpLoggerMiddleWare } from "./middlewares/http-logger.middleware";
 
 @Module({
-    imports: [
-        NotesModule,
-        AuthModule,
-        UsersModule,
-        MongooseModule.forRoot(config.mongoURI),
-        ThrottlerModule.forRoot({
-            ttl: 60,
-            limit: 10,
-        }),
-    ],
-    controllers: [AppController],
-    providers: [AppService],
+	imports: [
+		NotesModule,
+		AuthModule,
+		UsersModule,
+		MongooseModule.forRoot(config.mongoURI),
+		ThrottlerModule.forRoot({
+			ttl: 60,
+			limit: 10,
+		}),
+	],
+	controllers: [AppController],
+	providers: [AppService],
 })
 export class AppModule implements NestModule {
-    configure(consumer: MiddlewareConsumer) {
-        consumer.apply(HttpLoggerMiddleWare).forRoutes("*");
-    }
+	configure(consumer: MiddlewareConsumer) {
+		consumer.apply(HttpLoggerMiddleWare).forRoutes("*");
+	}
 }

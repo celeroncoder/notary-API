@@ -1,4 +1,4 @@
 export class NoteDto {
-    readonly name: string;
-    readonly body: string;
+	readonly name: string;
+	readonly body: string;
 }

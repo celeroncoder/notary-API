@@ -6,11 +6,11 @@ import { NotesService } from "./notes.service";
 import { ValidateObjectId } from "./validate-objectId.pipe";
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([{ name: "Note", schema: NoteSchema }]),
-        ValidateObjectId,
-    ],
-    controllers: [NotesController],
-    providers: [NotesService],
+	imports: [
+		MongooseModule.forFeature([{ name: "Note", schema: NoteSchema }]),
+		ValidateObjectId,
+	],
+	controllers: [NotesController],
+	providers: [NotesService],
 })
 export class NotesModule {}
