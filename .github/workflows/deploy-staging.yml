@@ -5,7 +5,7 @@ on:
         branches: [dev]
 
 jobs:
-    deploy-stage:
+    deploy:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -16,10 +16,3 @@ jobs:
                 heroku_email: ${{secrets.HEROKU_ACCOUNT_EMAIL}}
                 usedocker: true
                 stack: "container"
-                healthcheck: |
-                  "https://"
-                  ${{secrets.HEROKU_STAGING_APP_NAME}}
-                  ".herokuapp.com/health"
-                checkstring: "ok"
-                delay: 60
-                rollbackonhealthcheckfailed: true
