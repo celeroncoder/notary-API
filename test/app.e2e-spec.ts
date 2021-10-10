@@ -1,5 +1,5 @@
 import * as request from "supertest";
-import { Test } from "@nestjs/testing";
+import { Test, TestingModule } from "@nestjs/testing";
 import { AppModule } from "./../src/app.module";
 import { INestApplication } from "@nestjs/common";
 
@@ -7,7 +7,7 @@ describe("AppController (e2e)", () => {
 	let app: INestApplication;
 
 	beforeAll(async () => {
-		const moduleFixture = await Test.createTestingModule({
+		const moduleFixture: TestingModule = await Test.createTestingModule({
 			imports: [AppModule],
 		}).compile();
 
@@ -22,5 +22,5 @@ describe("AppController (e2e)", () => {
 			.expect("Hello World!");
 	});
 
-	afterAll(async () => await app.close())
+	afterAll(async () => await app.close());
 });

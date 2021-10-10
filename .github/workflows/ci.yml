@@ -1,11 +1,11 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: build
+name: CI/CD
 
 on:
     pull_request:
-        paths-ignore: ['.editorconfig', '.gitignore', '.prettierrc', 'CODE_OF_CONDUCT', '.github/ISSUE_TEMPLATE/**', '.github/PULL_REQUEST_TEMPLATE.md', 'README.md', 'docs/**', 'test/**', '**.spec.ts']
+        paths-ignore: ['.editorconfig', '.gitignore', '.prettierrc', 'CODE_OF_CONDUCT', '.github/ISSUE_TEMPLATE/**', '.github/PULL_REQUEST_TEMPLATE.md', 'README.md', 'docs/**']
         branches: [master, dev]
 
 jobs:
@@ -36,7 +36,15 @@ jobs:
                       ${{ runner.os }}-build-${{ env.cache-name }}-
                       ${{ runner.os }}-build-
                       ${{ runner.os }}-
-            - name: Install Dependencies & Build Project
+            - name: Install Dependencies
               run: npm install
+            - name: Build Project
+              run: npm run build
+            - name: Test Project
+              run: npm run test
+            - name: Upload Coverage to Codecov
+              uses: codecov/codecov-action@v1
+              with:
+                token: ${{ secrets.CODECOV_TOKEN }}
             - name: Lint Project
               run: npm run lint
