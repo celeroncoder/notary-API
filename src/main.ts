@@ -17,5 +17,5 @@ declare const module: any;
 		module.hot.dispose(() => app.close());
 	}
 
-	await app.listen(process.env.PORT || 80);
+	await app.listen(process.env.PORT || 8080);
 })();
