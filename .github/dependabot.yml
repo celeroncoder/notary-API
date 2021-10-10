@@ -12,8 +12,6 @@ updates:
       day: "wednesday"
     target-branch: "dev"
     versioning-strategy: widen
-    allow:
-      dependency-type: "production"
     assignees:
       - "khushalbhardwaj-0111"
     labels:
