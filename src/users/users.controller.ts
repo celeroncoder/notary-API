@@ -10,7 +10,7 @@ import {
     Request,
     UseGuards,
 } from "@nestjs/common";
-import { LocalAuthGuard } from "src/auth/local-auth.guard";
+import { LocalAuthGuard } from "../auth/local-auth.guard";
 import { CreateUserDto } from "./data/user.create.dto";
 import { UpdateUserDto } from "./data/user.update.dto";
 import { User } from "./interfaces/users.interface";
