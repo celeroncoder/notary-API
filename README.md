@@ -7,4 +7,4 @@ Notes App
 [![CI/CD](https://github.com/khushalbhardwaj-0111/notary-API/actions/workflows/ci.yml/badge.svg?branch=dev)](https://github.com/khushalbhardwaj-0111/notary-API/actions/workflows/ci.yml)
 [![Staging](https://github.com/khushalbhardwaj-0111/notary-API/actions/workflows/deploy-staging.yml/badge.svg?branch=dev)](https://github.com/khushalbhardwaj-0111/notary-API/actions/workflows/deploy-staging.yml)
 [![CodeQL](https://github.com/khushalbhardwaj-0111/notary-API/actions/workflows/codeql-analysis.yml/badge.svg?branch=dev)](https://github.com/khushalbhardwaj-0111/notary-API/actions/workflows/codeql-analysis.yml)
-[![codecov](https://codecov.io/gh/khushalbhardwaj-0111/notary-API/branch/dev/graph/badge.svg?token=48D3DK2L4J)](https://codecov.io/gh/khushalbhardwaj-0111/notary-API)
+[![codecov](https://codecov.io/gh/khushalbhardwaj-0111/notary-API/branch/dev/graph/badge.svg?token=PXFRYWQWKS)](https://codecov.io/gh/khushalbhardwaj-0111/notary-API)
