@@ -21,7 +21,9 @@ export class UsersService {
 	}
 
 	async delete(username: string): Promise<User> {
-		return await this.userModel.findOneAndRemove({ username: { $eq: username } });
+		return await this.userModel.findOneAndRemove({
+			username: { $eq: username },
+		});
 	}
 
 	async update(username: string, user: User) {

@@ -1,7 +1,7 @@
 import { MongooseModule } from "@nestjs/mongoose";
 import { Test, TestingModule } from "@nestjs/testing";
 import { UsersController } from "./users.controller";
-import config from "../config/keys"
+import config from "../config/keys";
 import { UserSchema } from "./models/user.schema";
 import { UsersService } from "./users.service";
 
@@ -12,7 +12,9 @@ describe("UsersController", () => {
 		const module: TestingModule = await Test.createTestingModule({
 			imports: [
 				MongooseModule.forRoot(config.mongoURI),
-				MongooseModule.forFeature([{ name: "User", schema: UserSchema }]),
+				MongooseModule.forFeature([
+					{ name: "User", schema: UserSchema },
+				]),
 			],
 			providers: [UsersService],
 			controllers: [UsersController],

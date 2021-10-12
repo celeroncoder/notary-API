@@ -17,13 +17,16 @@ import { rateLimiterOptions } from "./config/rate-limiter.config";
 		AuthModule,
 		UsersModule,
 		MongooseModule.forRoot(config.mongoURI),
-		RateLimiterModule.register(rateLimiterOptions)
+		RateLimiterModule.register(rateLimiterOptions),
 	],
 	controllers: [AppController],
-	providers: [AppService, {
-		provide: APP_GUARD,
-		useClass: RateLimiterGuard
-	}],
+	providers: [
+		AppService,
+		{
+			provide: APP_GUARD,
+			useClass: RateLimiterGuard,
+		},
+	],
 })
 export class AppModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {

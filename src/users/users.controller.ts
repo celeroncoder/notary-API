@@ -10,7 +10,7 @@ import {
 	Request,
 	UseGuards,
 } from "@nestjs/common";
-import { RateLimit } from 'nestjs-rate-limiter'
+import { RateLimit } from "nestjs-rate-limiter";
 import { LocalAuthGuard } from "../auth/local-auth.guard";
 import { CreateUserDto } from "./data/user.create.dto";
 import { UpdateUserDto } from "./data/user.update.dto";
@@ -21,7 +21,12 @@ import { UsersService } from "./users.service";
 export class UsersController {
 	constructor(private readonly userService: UsersService) {}
 
-	@RateLimit({ keyPrefix: 'login', points: 2, duration: 60, errorMessage: 'Cannot login more than once in per minute' })
+	@RateLimit({
+		keyPrefix: "login",
+		points: 2,
+		duration: 60,
+		errorMessage: "Cannot login more than once in per minute",
+	})
 	@UseGuards(LocalAuthGuard)
 	@Post("login")
 	login(@Request() req): User {
