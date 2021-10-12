@@ -12,7 +12,7 @@ export class NotesService {
 	}
 
 	async findOne(id: string): Promise<Note> {
-		return await this.noteModel.findOne({ _id: id });
+		return await this.noteModel.findOne({ _id: { $eq: id } });
 	}
 
 	async create(note: Note): Promise<Note> {
@@ -21,10 +21,11 @@ export class NotesService {
 	}
 
 	async delete(id: string): Promise<Note> {
-		return await this.noteModel.findByIdAndRemove(id);
+		return await this.noteModel.findByIdAndRemove({ $eq: id });
 	}
 
 	async update(id: string, note: Note) {
-		return await this.noteModel.findByIdAndUpdate(id, note, { new: false });
+		// TODO: sanitize the update note
+		return await this.noteModel.findByIdAndUpdate({ $eq: id }, note, { new: false });
 	}
 }
