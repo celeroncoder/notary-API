@@ -21,7 +21,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json --forceExit",
     "test:staged": "jest --findRelatedTests",
-	"test:ci": "npm run test:cov && npm run test:e2e"
+    "test:ci": "npm run test:cov && npm run test:e2e"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.6",
@@ -33,6 +33,7 @@
     "dotenv": "^10.0.0",
     "helmet": "^4.6.0",
     "mongoose": "^6.0.8",
+    "nestjs-rate-limiter": "^3.0.0",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
