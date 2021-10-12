@@ -12,7 +12,7 @@ export class UsersService {
 	}
 
 	async findOne(username: string): Promise<User> {
-		return await this.userModel.findOne({ username: username });
+		return await this.userModel.findOne({ username: { $eq: username } });
 	}
 
 	async create(user: User): Promise<User> {
@@ -21,12 +21,12 @@ export class UsersService {
 	}
 
 	async delete(username: string): Promise<User> {
-		return await this.userModel.findOneAndRemove({ username: username });
+		return await this.userModel.findOneAndRemove({ username: { $eq: username } });
 	}
 
 	async update(username: string, user: User) {
 		return await this.userModel.findOneAndUpdate(
-			{ username: username },
+			{ username: { $eq: username } },
 			user,
 			{ new: false },
 		);
