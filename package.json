@@ -15,12 +15,13 @@
     "up": "docker-compose up",
     "down": "docker-compose down",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --forceExit --coverage --verbose",
+    "test": "jest --forceExit --verbose",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
+    "test:cov": "jest --coverage --forceExit",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "test:staged": "jest --findRelatedTests"
+    "test:e2e": "jest --config ./test/jest-e2e.json --forceExit",
+    "test:staged": "jest --findRelatedTests",
+	"test:ci": "npm run test:cov && npm run test:e2e"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.6",
