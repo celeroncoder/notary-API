@@ -13,7 +13,7 @@ name: "CodeQL"
 
 on:
   pull_request:
-    paths-ignore: ['.editorconfig', '.vscode/', '.gitignore', '.prettierrc', 'CODE_OF_CONDUCT', '.github/ISSUE_TEMPLATE/**', '.github/PULL_REQUEST_TEMPLATE.md', 'README.md', 'docs/**']
+    paths-ignore: ['.editorconfig', '.vscode/', '.gitignore', '.huskyrc.json', '.lintstagedrc.json', 'commitlint.config.js', '.prettierrc', 'CODE_OF_CONDUCT', '.github/ISSUE_TEMPLATE/**', '.github/PULL_REQUEST_TEMPLATE.md', 'README.md', 'docs/**']
     # The branches below must be a subset of the branches above
     branches: [ dev, master ]
 

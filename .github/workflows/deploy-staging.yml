@@ -2,7 +2,7 @@ name: Deploy Staging
 
 on:
     push:
-        paths-ignore: ['.editorconfig', '.gitignore', '.prettierrc', 'CODE_OF_CONDUCT', '.github/ISSUE_TEMPLATE/**', '.github/dependabot.yml', '.github/PULL_REQUEST_TEMPLATE.md', 'README.md', 'docs/**', 'test/**', '**.spec.ts', '.vscode/']
+        paths-ignore: ['.editorconfig', '.gitignore', '.prettierrc', 'CODE_OF_CONDUCT', '.github/ISSUE_TEMPLATE/**', '.huskyrc.json', '.lintstagedrc.json', 'commitlint.config.js', '.github/dependabot.yml', '.github/PULL_REQUEST_TEMPLATE.md', 'README.md', 'docs/**', 'test/**', '**.spec.ts', '.vscode/']
         branches: [dev]
 
 jobs:
