@@ -4,6 +4,7 @@ import { AppModule } from "./../src/app.module";
 import { INestApplication } from "@nestjs/common";
 
 describe("AppController (e2e)", () => {
+	jest.setTimeout(10000);
 	let app: INestApplication;
 
 	beforeAll(async () => {

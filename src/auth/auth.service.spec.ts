@@ -12,8 +12,14 @@ describe("AuthService", () => {
 
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
-			imports: [UsersModule, PassportModule, MongooseModule.forRoot(config.mongoURI),
-				MongooseModule.forFeature([{ name: "User", schema: UserSchema }]),],
+			imports: [
+				UsersModule,
+				PassportModule,
+				MongooseModule.forRoot(config.mongoURI),
+				MongooseModule.forFeature([
+					{ name: "User", schema: UserSchema },
+				]),
+			],
 			providers: [AuthService, LocalStrategy],
 		}).compile();
 

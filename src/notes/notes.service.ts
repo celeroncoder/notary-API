@@ -26,6 +26,8 @@ export class NotesService {
 
 	async update(id: string, note: Note) {
 		// TODO: sanitize the update note
-		return await this.noteModel.findByIdAndUpdate({ $eq: id }, note, { new: false });
+		return await this.noteModel.findByIdAndUpdate({ $eq: id }, note, {
+			new: false,
+		});
 	}
 }
