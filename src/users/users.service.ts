@@ -84,12 +84,12 @@ export class UsersService {
     }
 
     public async updateProfileUser(
-        id: string,
+        userId: string,
         userProfileDto: UserProfileDto,
     ): Promise<Users> {
         try {
             // TODO: figure out what is +id
-            const user = await this.userRepository.findOne({ id: +id });
+            const user = await this.userRepository.findOne({ id: +userId });
             user.name = userProfileDto.name;
             user.email = userProfileDto.email;
             user.username = userProfileDto.username;

@@ -9,6 +9,7 @@ import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { MailerModule } from "@nestjs-modules/mailer";
 import { mailerAsyncOptions } from "./config/mailer";
+import { RegisterModule } from "./register/register.module";
 
 @Module({
     imports: [
@@ -16,6 +17,7 @@ import { mailerAsyncOptions } from "./config/mailer";
         RateLimiterModule.register(rateLimiterOptions),
         TypeOrmModule.forRoot(),
         MailerModule.forRootAsync(mailerAsyncOptions),
+        RegisterModule,
     ],
     controllers: [AppController],
     providers: [
