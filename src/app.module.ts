@@ -10,6 +10,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { MailerModule } from "@nestjs-modules/mailer";
 import { mailerAsyncOptions } from "./config/mailer";
 import { RegisterModule } from "./register/register.module";
+import { LoginModule } from "./login/login.module";
+import { ChangePasswordModule } from "./change-password/change-password.module";
 
 @Module({
     imports: [
@@ -18,6 +20,8 @@ import { RegisterModule } from "./register/register.module";
         TypeOrmModule.forRoot(),
         MailerModule.forRootAsync(mailerAsyncOptions),
         RegisterModule,
+        LoginModule,
+        ChangePasswordModule,
     ],
     controllers: [AppController],
     providers: [
