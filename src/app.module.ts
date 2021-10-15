@@ -12,6 +12,7 @@ import { mailerAsyncOptions } from "./config/mailer";
 import { RegisterModule } from "./register/register.module";
 import { LoginModule } from "./login/login.module";
 import { ChangePasswordModule } from "./change-password/change-password.module";
+import { ForgotPasswordModule } from "./forgot-password/forgot-password.module";
 
 @Module({
     imports: [
@@ -22,6 +23,7 @@ import { ChangePasswordModule } from "./change-password/change-password.module";
         RegisterModule,
         LoginModule,
         ChangePasswordModule,
+        ForgotPasswordModule,
     ],
     controllers: [AppController],
     providers: [
