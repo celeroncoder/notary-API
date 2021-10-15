@@ -13,14 +13,30 @@ import { RegisterModule } from "./register/register.module";
 import { LoginModule } from "./login/login.module";
 import { ChangePasswordModule } from "./change-password/change-password.module";
 import { ForgotPasswordModule } from "./forgot-password/forgot-password.module";
+import { Users } from "./users/entities/users.entity";
+import { UsersModule } from "./users/users.module";
 
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         RateLimiterModule.register(rateLimiterOptions),
-        TypeOrmModule.forRoot(),
+        TypeOrmModule.forRoot({
+			type: "mysql",
+			host: "localhost",
+			port: 3306,
+			username: "root",
+			password: "root",
+			database: "notary-db",
+			synchronize: true,
+			logging: true,
+			entities: [Users],
+			cli: {
+				migrationsDir: "src/migrations"
+			}
+		}),
         MailerModule.forRootAsync(mailerAsyncOptions),
         RegisterModule,
+		UsersModule,
         LoginModule,
         ChangePasswordModule,
         ForgotPasswordModule,
