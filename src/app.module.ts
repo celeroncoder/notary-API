@@ -1,4 +1,10 @@
-import { CacheInterceptor, CacheModule, MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import {
+    CacheInterceptor,
+    CacheModule,
+    MiddlewareConsumer,
+    Module,
+    NestModule,
+} from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { RateLimiterGuard, RateLimiterModule } from "nestjs-rate-limiter";
@@ -16,7 +22,10 @@ import { ForgotPasswordModule } from "./forgot-password/forgot-password.module";
 import { UsersModule } from "./users/users.module";
 import { typeOrmDevOptions, typeOrmProdOptions } from "./config/typeorm";
 
-const typeOrmOptions: TypeOrmModuleOptions = process.env.NODE_ENV === 'production' ? typeOrmProdOptions : typeOrmDevOptions;
+const typeOrmOptions: TypeOrmModuleOptions =
+    process.env.NODE_ENV === "production"
+        ? typeOrmProdOptions
+        : typeOrmDevOptions;
 
 @Module({
     imports: [
@@ -24,9 +33,9 @@ const typeOrmOptions: TypeOrmModuleOptions = process.env.NODE_ENV === 'productio
         RateLimiterModule.register(rateLimiterOptions),
         TypeOrmModule.forRoot(typeOrmOptions),
         MailerModule.forRootAsync(mailerAsyncOptions),
-		CacheModule.register({ isGlobal: true }),
+        CacheModule.register({ isGlobal: true }),
         RegisterModule,
-		UsersModule,
+        UsersModule,
         LoginModule,
         ChangePasswordModule,
         ForgotPasswordModule,
@@ -38,10 +47,10 @@ const typeOrmOptions: TypeOrmModuleOptions = process.env.NODE_ENV === 'productio
             provide: APP_GUARD,
             useClass: RateLimiterGuard,
         },
-		{
-			provide: APP_INTERCEPTOR,
-			useClass: CacheInterceptor
-		}
+        {
+            provide: APP_INTERCEPTOR,
+            useClass: CacheInterceptor,
+        },
     ],
 })
 export class AppModule implements NestModule {
