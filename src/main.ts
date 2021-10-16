@@ -1,10 +1,11 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import * as helmet from "helmet";
-import * as compression from "compression";
+import helmet from "helmet";
+import compression from "compression";
 import { ValidationPipe } from "@nestjs/common";
 import { globalValidationPipeOptions } from "./config/validation-pipe";
 import { useContainer } from "class-validator";
+import { RequestGuard } from "@libs/core";
 
 declare const module: any;
 
@@ -16,6 +17,9 @@ declare const module: any;
     app.enableCors();
     app.use(helmet());
     app.use(compression());
+
+    // * guards
+    app.useGlobalGuards(new RequestGuard());
 
     app.setGlobalPrefix("api");
     app.useGlobalPipes(new ValidationPipe(globalValidationPipeOptions));

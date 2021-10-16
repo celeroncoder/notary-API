@@ -10,7 +10,7 @@ const typeOrmDevOptions: MysqlConnectionOptions = {
     database: "notary-db",
     synchronize: true,
     logging: false,
-    entities: [Users]
+    entities: [Users],
 };
 
 export default typeOrmDevOptions;

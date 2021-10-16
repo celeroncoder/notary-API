@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "Notary API",
+  "author": "Khushal Bhardwaj <khushalbhardwaj0111@gmail.com>",
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -80,7 +81,7 @@
     "ts-jest": "^27.0.5",
     "ts-loader": "^9.2.5",
     "ts-node": "^10.2.1",
-    "tsconfig-paths": "^3.10.1",
+    "tsconfig-paths": "^3.11.0",
     "typescript": "^4.3.5",
     "webpack": "^5.56.0",
     "webpack-node-externals": "^3.0.0"
@@ -101,13 +102,20 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
-	"roots": [
-		"<rootDir>/src/",
-		"<rootDir>/libs/"
-	],
-	"moduleNameMappers": {
-		"@libs/core/(.*)": "<rootDir>/libs/core/src/$1",
-		"@libs/core": "<rootDir>/libs/core/src"
-	}
+    "roots": [
+      "<rootDir>/src/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMappers": {
+      "@libs/core/(.*)": "<rootDir>/libs/core/src/$1",
+      "@libs/core": "<rootDir>/libs/core/src"
+    }
+  },
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/khushalbhardwaj-0111/notary-API.git"
+  },
+  "bugs": {
+	"url": "https://github.com/khushalbhardwaj-0111/notary-API/issues"
   }
 }
