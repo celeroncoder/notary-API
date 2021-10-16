@@ -3,6 +3,5 @@
 		"editor.quickSuggestions": {
 			"strings": true
 		}
-	},
-	"prettier.configPath": "."
+	}
 }
