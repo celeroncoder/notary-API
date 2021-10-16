@@ -40,11 +40,11 @@ jobs:
               run: npm install
             - name: Build Project
               run: npm run build
-            - name: Test Project
-              run: npm run test:cov
-            - name: Upload Coverage to Codecov
-              uses: codecov/codecov-action@v1
-              with:
-                token: ${{ secrets.CODECOV_TOKEN }}
+            # - name: Test Project
+            #   run: npm run test:cov
+            # - name: Upload Coverage to Codecov
+              # uses: codecov/codecov-action@v1
+              # with:
+                # token: ${{ secrets.CODECOV_TOKEN }}
             - name: Lint Project
               run: npm run lint

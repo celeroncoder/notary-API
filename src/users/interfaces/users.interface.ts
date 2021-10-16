@@ -1,6 +1,7 @@
-export interface User {
-	id?: number;
-	name: string;
-	username: string;
-	password?: string;
+export interface IUsers {
+    readonly id: number;
+    readonly name: string;
+    readonly username: string;
+    readonly email: string;
+    readonly password: string;
 }

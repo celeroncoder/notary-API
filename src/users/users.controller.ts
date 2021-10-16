@@ -1,68 +1,54 @@
 import {
-	BadRequestException,
-	Body,
-	Controller,
-	Delete,
-	Get,
-	Param,
-	Post,
-	Put,
-	Request,
-	UseGuards,
+    Controller,
+    Get,
+    NotFoundException,
+    Param,
+    Put,
+    UseGuards,
+    Body,
+    Res,
+    HttpStatus,
 } from "@nestjs/common";
-import { RateLimit } from "nestjs-rate-limiter";
-import { LocalAuthGuard } from "../auth/local-auth.guard";
-import { CreateUserDto } from "./data/user.create.dto";
-import { UpdateUserDto } from "./data/user.update.dto";
-import { User } from "./interfaces/users.interface";
+import { AuthGuard } from "@nestjs/passport";
+import { Response, response } from "express";
+import { UserProfileDto } from "./dto/user-profile.dto";
+import { IUsers } from "./interfaces/users.interface";
 import { UsersService } from "./users.service";
 
+@UseGuards(AuthGuard("jwt"))
 @Controller("users")
 export class UsersController {
-	constructor(private readonly userService: UsersService) {}
+    constructor(private readonly userService: UsersService) {}
 
-	@RateLimit({
-		keyPrefix: "login",
-		points: 2,
-		duration: 60,
-		errorMessage: "Cannot login more than once in per minute",
-	})
-	@UseGuards(LocalAuthGuard)
-	@Post("login")
-	login(@Request() req): User {
-		return req.user;
-	}
+    @Get("/:userId/profile")
+    public async getUser(@Param("userId") userId: string): Promise<IUsers> {
+        const user = await this.userService.findById(userId);
 
-	@Get()
-	async findAll(): Promise<User[]> {
-		return this.userService.findAll();
-	}
+        if (!user) {
+            throw new NotFoundException("User does not exist!");
+        }
 
-	@Get(":username")
-	async findOne(@Param("username") username: string): Promise<User> {
-		const user = await this.userService.findOne(username);
-		if (user) {
-			return user;
-		} else throw new BadRequestException({ message: "user not found!" });
-	}
+        return user;
+    }
 
-	@Post()
-	async create(@Body() createUserDto: CreateUserDto): Promise<User> {
-		return this.userService.create(createUserDto);
-	}
+    @Put("/:userId/profile")
+    public async updateUserProfileUser(
+        @Res() res: Response,
+        @Param("userId") userId: string,
+        @Body() userProfileDto: UserProfileDto,
+    ): Promise<any> {
+        try {
+            await this.userService.updateProfileUser(userId, userProfileDto);
 
-	@UseGuards(LocalAuthGuard)
-	@Delete(":username")
-	async delete(@Param("username") username: string): Promise<User> {
-		return this.userService.delete(username);
-	}
-
-	@UseGuards(LocalAuthGuard)
-	@Put(":username")
-	async update(
-		@Body() updateUserDto: UpdateUserDto,
-		@Param("username") username: string,
-	): Promise<User> {
-		return this.userService.update(username, updateUserDto);
-	}
+            return res.status(HttpStatus.OK).json({
+                message: "user updated successfully!",
+                status: 200,
+            });
+        } catch (error) {
+            return res.status(HttpStatus.BAD_REQUEST).json({
+                message: "Error: user not updated!",
+                status: HttpStatus.BAD_REQUEST,
+            });
+        }
+    }
 }

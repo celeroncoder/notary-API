@@ -1,11 +1,11 @@
 version: "3.8"
+
 services:
-    api:
-        # image: khushalbhardwaj-0111/notary
-        build:
-            dockerfile: Dockerfile
-            context: ./
+    mysql:
+        image: mysql:5
+        restart: always
         environment:
-            NODE_ENV: production
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: notary-db
         ports:
-            - "8080:8080"
+            - "3306:3306"
