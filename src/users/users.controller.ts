@@ -10,7 +10,7 @@ import {
     HttpStatus,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
-import { Response, response } from "express";
+import { Response } from "express";
 import { UserProfileDto } from "./dto/user-profile.dto";
 import { IUsers } from "./interfaces/users.interface";
 import { UsersService } from "./users.service";
