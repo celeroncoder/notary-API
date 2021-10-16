@@ -6,34 +6,23 @@ import { HttpLoggerMiddleWare } from "./middlewares/http-logger.middleware";
 import { APP_GUARD } from "@nestjs/core";
 import { rateLimiterOptions } from "./config/rate-limiter";
 import { ConfigModule } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm";
 import { MailerModule } from "@nestjs-modules/mailer";
 import { mailerAsyncOptions } from "./config/mailer";
 import { RegisterModule } from "./register/register.module";
 import { LoginModule } from "./login/login.module";
 import { ChangePasswordModule } from "./change-password/change-password.module";
 import { ForgotPasswordModule } from "./forgot-password/forgot-password.module";
-import { Users } from "./users/entities/users.entity";
 import { UsersModule } from "./users/users.module";
+import { typeOrmDevOptions, typeOrmProdOptions } from "./config/typeorm";
+
+const typeOrmOptions: TypeOrmModuleOptions = process.env.NODE_ENV === 'production' ? typeOrmProdOptions : typeOrmDevOptions;
 
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         RateLimiterModule.register(rateLimiterOptions),
-        TypeOrmModule.forRoot({
-			type: "mysql",
-			host: "localhost",
-			port: 3306,
-			username: "root",
-			password: "root",
-			database: "notary-db",
-			synchronize: true,
-			logging: true,
-			entities: [Users],
-			cli: {
-				migrationsDir: "src/migrations"
-			}
-		}),
+        TypeOrmModule.forRoot(typeOrmOptions),
         MailerModule.forRootAsync(mailerAsyncOptions),
         RegisterModule,
 		UsersModule,

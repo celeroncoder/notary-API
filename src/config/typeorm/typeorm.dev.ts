@@ -10,10 +10,7 @@ const typeOrmDevOptions: MysqlConnectionOptions = {
     database: "notary-db",
     synchronize: true,
     logging: false,
-    entities: [Users],
-    cli: {
-        migrationsDir: "src/migrations",
-    },
+    entities: [Users]
 };
 
 export default typeOrmDevOptions;
