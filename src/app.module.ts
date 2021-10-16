@@ -1,9 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import { CacheInterceptor, CacheModule, MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { RateLimiterGuard, RateLimiterModule } from "nestjs-rate-limiter";
 import { HttpLoggerMiddleWare } from "./middlewares/http-logger.middleware";
-import { APP_GUARD } from "@nestjs/core";
+import { APP_GUARD, APP_INTERCEPTOR } from "@nestjs/core";
 import { rateLimiterOptions } from "./config/rate-limiter";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm";
@@ -24,6 +24,7 @@ const typeOrmOptions: TypeOrmModuleOptions = process.env.NODE_ENV === 'productio
         RateLimiterModule.register(rateLimiterOptions),
         TypeOrmModule.forRoot(typeOrmOptions),
         MailerModule.forRootAsync(mailerAsyncOptions),
+		CacheModule.register({ isGlobal: true }),
         RegisterModule,
 		UsersModule,
         LoginModule,
@@ -37,6 +38,10 @@ const typeOrmOptions: TypeOrmModuleOptions = process.env.NODE_ENV === 'productio
             provide: APP_GUARD,
             useClass: RateLimiterGuard,
         },
+		{
+			provide: APP_INTERCEPTOR,
+			useClass: CacheInterceptor
+		}
     ],
 })
 export class AppModule implements NestModule {
