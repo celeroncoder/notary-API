@@ -1,6 +1,7 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import * as helmet from "helmet";
+import * as compression from "compression";
 import { ValidationPipe } from "@nestjs/common";
 import { globalValidationPipeOptions } from "./config/validation-pipe";
 
@@ -10,6 +11,7 @@ declare const module: any;
     const app = await NestFactory.create(AppModule);
     app.enableCors();
     app.use(helmet());
+	app.use(compression());
 
     app.setGlobalPrefix("api");
     app.useGlobalPipes(new ValidationPipe(globalValidationPipeOptions));
