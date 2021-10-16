@@ -5,7 +5,7 @@ import compression from "compression";
 import { ValidationPipe } from "@nestjs/common";
 import { globalValidationPipeOptions } from "./config/validation-pipe";
 import { useContainer } from "class-validator";
-import { RequestGuard, ExceptionFilter } from "@libs/core";
+import { RequestGuard, ExceptionFilter, TimeoutInterceptor } from "@libs/core";
 
 declare const module: any;
 
@@ -24,6 +24,9 @@ declare const module: any;
     // filters
     const { httpAdapter } = app.get(HttpAdapterHost);
     app.useGlobalFilters(new ExceptionFilter(httpAdapter));
+
+    // interceptors
+    app.useGlobalInterceptors(new TimeoutInterceptor());
 
     app.setGlobalPrefix("api");
     app.useGlobalPipes(new ValidationPipe(globalValidationPipeOptions));
