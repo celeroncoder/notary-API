@@ -2,15 +2,22 @@ import { HttpAdapterHost, NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import helmet from "helmet";
 import compression from "compression";
-import { ValidationPipe } from "@nestjs/common";
+import { NestApplicationOptions, ValidationPipe } from "@nestjs/common";
 import { globalValidationPipeOptions } from "./config/validation-pipe";
 import { useContainer } from "class-validator";
 import { RequestGuard, ExceptionFilter, TimeoutInterceptor } from "@libs/core";
+import { NestExpressApplication } from "@nestjs/platform-express";
 
 declare const module: any;
 
 (async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+    const AppOptions: NestApplicationOptions = {
+        bodyParser: true,
+    };
+    const app = await NestFactory.create<NestExpressApplication>(
+        AppModule,
+        AppOptions,
+    );
 
     useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
